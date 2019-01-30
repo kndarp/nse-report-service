@@ -1,7 +1,7 @@
 FROM node:8
 
 # Create Installation Directory
-RUN mkdir /usr/src/microservices/
+RUN mkdir -p /usr/src/microservices/
 WORKDIR /usr/src/microservices/
 
 # Install app dependencies
@@ -12,7 +12,7 @@ RUN npm install
 # RUN npm install --only=production
 
 # Bundle app source
-COPY . .
+COPY . /usr/src/microservices/
 
 EXPOSE 3000
 

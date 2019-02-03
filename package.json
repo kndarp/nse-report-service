@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "set DEBUG=express:* & nodemon ./bin/www",
+    "start": "DEBUG=express:* node ./bin/www",
     "test": "echo Coming soon"
   },
   "dependencies": {

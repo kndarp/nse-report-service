@@ -1,17 +1,9 @@
 version: "2"
 services:
   app:
-    container_name: nse
+    container_name: nse-report-service
     restart: always
     build: .
+    hostname: nse-report-service
     ports:
       - "3000:3000"
-    links:
-      - mongo
-  mongo:
-    container_name: mongo
-    image: mongo
-    volumes:
-      - ./data:/data/db
-    ports:
-      - "27017:27017"

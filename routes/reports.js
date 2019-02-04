@@ -1,6 +1,6 @@
 var express = require('express');
 var router = express.Router();
-var helper = require('../middleware/helper');
+var helper = require('../app/helper');
 
 /* GET endpoints */
 router.get('/', function (req, res, next) {

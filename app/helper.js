@@ -3,7 +3,10 @@ var params = require("../config/nseApi");
 var cheerio = require("cheerio");
 var fs = require('fs');
 var extract = require('extract-zip')
-const uuid = require('uuid/v4');
+var uuid = require('uuid/v4');
+var locations = require('../config/locations');
+var path = require('path');
+var ingest = require('./ingest');
 
 module.exports = {
     downloadFileFromNSE: function (link) {
@@ -15,10 +18,10 @@ module.exports = {
                 method: "GET",
                 baseUrl: params.baseUrl,
                 uri: link,
-            }).pipe(fs.createWriteStream(archive))
+            }).pipe(fs.createWriteStream(path.join(locations.download,archive)))
             .on('close', function () {
-                console.log('Downloaded and written');
-                module.exports.extractFilesFromZip(archive,__dirname);
+                console.log('Archive Downloaded');
+                module.exports.extractFilesFromZip(path.join(locations.download,archive),locations.download);
               });
               return('Downloaded and written');
     },
@@ -44,7 +47,17 @@ module.exports = {
             })
     },
     extractFilesFromZip: (fileName, extractTo) => {
-        extract(fileName, {dir: extractTo}, err => console.error);
-        // fs.unlink(fileName);
+        var files = [];
+        extract(fileName, {dir: extractTo, onEntry: (entry, zipFile) =>{
+            files.push(entry.fileName);
+        }}, err => {
+            if(err){
+                console.error("Error extracting file");
+            } else{
+                fs.unlink(fileName);
+                console.log("Archive extacted and removed.");
+                files.forEach(entry => ingest(entry))
+            }
+        });
     }
 }

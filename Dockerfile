@@ -4,6 +4,8 @@ FROM node:8
 RUN mkdir -p /usr/src/microservices/
 WORKDIR /usr/src/microservices/
 
+# Create Downloads Directory
+RUN mkdir /downloads/
 # Install app dependencies
 # A wildcard is used to ensure both package.json AND package-lock.json are copied
 COPY package*.json ./

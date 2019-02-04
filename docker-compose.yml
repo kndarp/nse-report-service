@@ -1,9 +1,11 @@
 version: "2"
 services:
   app:
-    container_name: nse-report-service
+    container_name: nse
     restart: always
     build: .
-    hostname: nse-report-service
+    hostname: nse
     ports:
       - "3000:3000"
+    environment: 
+      - DEBUG=1

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "DEBUG=express:* node ./bin/www",
+    "start": "node ./bin/www",
     "test": "echo Coming soon"
   },
   "dependencies": {
@@ -11,13 +11,22 @@
     "cheerio": "^1.0.0-rc.2",
     "cookie-parser": "~1.4.3",
     "debug": "~2.6.9",
+    "dotenv": "^6.2.0",
     "express": "~4.16.0",
     "extract-zip": "^1.6.7",
+    "fast-csv": "^2.4.1",
     "http-errors": "~1.6.2",
+    "moment": "^2.24.0",
+    "mongoose": "^5.4.9",
     "morgan": "~1.9.0",
     "pug": "^2.0.3",
     "request": "^2.88.0",
     "request-promise": "^4.2.2",
     "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^5.13.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0"
   }
 }

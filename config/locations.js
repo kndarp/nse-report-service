@@ -1,4 +1,3 @@
 module.exports = {
-    download: 'downloads/',
-    extracts: 'extracts/'
+    download: '/downloads/',
 }

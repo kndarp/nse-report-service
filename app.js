@@ -4,18 +4,21 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 var bodyParser = require('body-parser');
+var mongoose = require('mongoose');
+var dotenv = require('dotenv');
 
+// Project dependencies
 var indexRouter = require('./routes/index');
 var reportsRouter = require('./routes/reports');
-var mongoose = require('mongoose');
 var db = require("./config/db.js");
-mongoose.Promise = global.Promise;
+
 require("./model/Report");
-var dotenv = require('dotenv');
+require("./model/Ingestion");
+
+mongoose.Promise = global.Promise;
 dotenv.config();
 
 var connectionString = db.protocol+process.env.DB_USER+":"+process.env.DB_PASSWORD+"@"+process.env.DB_CLUSTER+"/"+db.db+"?"+db.tail;
-console.log(connectionString);
 
 mongoose.connect(connectionString,{ useNewUrlParser: true } );
 

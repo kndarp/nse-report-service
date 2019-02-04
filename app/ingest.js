@@ -5,9 +5,10 @@ var fs = require("fs");
 var mongoose = require("mongoose");
 var ObjectId = mongoose.Types.ObjectId;
 
-module.exports =(file) => {
+module.exports = (file) => {
     var csvfile = path.join(locations.download, file);
     var stream = fs.createReadStream(csvfile);
+
     var Record = mongoose.model("Report");
     var csvStream = csv()
       .on("data", data => {
@@ -31,10 +32,10 @@ module.exports =(file) => {
         record.save(err => {
           // console.log(record);
           if(err){
-            console.error(err)
+            // console.error(err)
           }
         })
-
+        
       })
       .on("end", () => {
           fs.unlink(csvfile);

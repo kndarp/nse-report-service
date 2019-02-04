@@ -9,9 +9,8 @@ router.get('/', function (req, res, next) {
 
 /* GET report by date*/
 router.get('/date/:date', function (req, res, next) {
-  console.log('Router - '+helper.downloadReport(req.params.date))
-  res.send("Queued");
-
+  helper.checkReportInDb(req.params.date)
+  res.send("Acknowledged - "+new Date())
 });
 
 module.exports = router;

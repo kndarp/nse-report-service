@@ -38,7 +38,8 @@ module.exports = {
             })
             .then(function (response) {
                 // Find the download link and fetch it
-               return module.exports.downloadFileFromNSE(cheerio.load(response)("a").attr("href"));
+                let uri = cheerio.load(response)("a").attr("href");
+                return uri ? module.exports.downloadFileFromNSE(uri) : null;
             })
             .catch(function (err) {
                 // Deal with the error

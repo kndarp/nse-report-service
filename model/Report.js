@@ -1,7 +1,6 @@
 var mongoose = require("mongoose");
 
 var nseBhavCopySchema = mongoose.Schema({
-    _id : mongoose.Schema.Types.ObjectId,
     SYMBOL : String,
     SERIES : String,
     OPEN : mongoose.Schema.Types.Decimal128,

@@ -3,7 +3,6 @@ var locations = require("../config/locations");
 var path = require("path");
 var fs = require("fs");
 var mongoose = require("mongoose");
-var ObjectId = mongoose.Types.ObjectId;
 
 module.exports = (file) => {
     var csvfile = path.join(locations.download, file);
@@ -13,7 +12,6 @@ module.exports = (file) => {
     var csvStream = csv()
       .on("data", data => {
         var record = new Record({
-          _id: new ObjectId(),
           SYMBOL: data[0],
           SERIES: data[1],
           OPEN: data[2],
@@ -35,7 +33,7 @@ module.exports = (file) => {
             // console.error(err)
           }
         })
-        
+
       })
       .on("end", () => {
           fs.unlink(csvfile);

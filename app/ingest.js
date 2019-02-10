@@ -4,7 +4,7 @@ var path = require("path");
 var fs = require("fs");
 var mongoose = require("mongoose");
 
-module.exports = (file) => {
+module.exports = (file, forDate) => {
     var csvfile = path.join(locations.download, file);
     var stream = fs.createReadStream(csvfile);
 
@@ -36,7 +36,7 @@ module.exports = (file) => {
 
       })
       .on("end", () => {
-          fs.unlink(csvfile);
+          fs.unlink(csvfile, () => console.log("Removed extracted file for ", forDate));
       })
       stream.pipe(csvStream);
   }
